@@ -21,9 +21,8 @@ public class PriceController {
     @GetMapping
     public ResponseEntity getPrice (@RequestParam int productId,
                                     @RequestParam int brandId,
-                                    @RequestParam LocalDate applicationDate) {
-        LocalDateTime applicationDateTime = LocalDateTime.from(applicationDate);
-        return priceService.getApplicablePrice(productId, brandId, applicationDateTime)
+                                    @RequestParam LocalDateTime applicationDate) {
+        return priceService.getApplicablePrice(productId, brandId, applicationDate)
                 .map(price -> ResponseEntity.ok(price))
                 .orElse(ResponseEntity.notFound().build());
     }
